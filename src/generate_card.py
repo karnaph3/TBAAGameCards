@@ -30,7 +30,6 @@ REQUIRED_FIELDS = [
     "Linesman2",
 ]
 
-
 class GameCardApp:
     def __init__(self, root):
         self.root = root
@@ -51,6 +50,7 @@ class GameCardApp:
         self.generate_btn.pack(pady=10)
 
     def load_file(self):
+        self.dropdown_vars = {}
         self.filepath = filedialog.askopenfilename(
             filetypes=[("CSV and Excel files", "*.csv *.xlsx *.xls")]
         )
@@ -112,9 +112,18 @@ class GameCardApp:
                 except Exception as e:
                     messagebox.showerror("Error", f"Failed on row {i + 2}: {e}")
                     return
-            merger.write("all_game_cards.pdf")
+            output_path = filedialog.asksaveasfilename(
+                defaultextension=".pdf",
+                filetypes=[("PDF files", "*.pdf")],
+                title="Save PDF as..."
+            )
+            if not output_path:
+                return  # User cancelled
+
+            merger.write(output_path)
+
             merger.close()
-        messagebox.showinfo("Success", "PDF created: all_game_cards.pdf")
+        messagebox.showinfo("Success", f"PDF created:\n{output_path}")
 
 
 if __name__ == "__main__":
