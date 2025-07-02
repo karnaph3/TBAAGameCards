@@ -1,0 +1,23 @@
+# Ignore PyInstaller build output
+dist/
+build/
+*.spec
+
+# Ignore virtual environments
+.venv/
+env/
+venv/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs or temp files
+*.log
+*.tmp
