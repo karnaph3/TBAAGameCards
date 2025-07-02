@@ -52,7 +52,18 @@ class GameCardApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Game Card Generator")
-        icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
+        if hasattr(sys, "_MEIPASS"):
+            # Running from a PyInstaller bundle
+            base_path = sys._MEIPASS
+        else:
+            # Running from source
+            base_path = os.path.dirname(__file__)
+
+        icon_path = os.path.join(base_path, "icon.ico")
+        try:
+            self.root.iconbitmap(icon_path)
+        except Exception as e:
+            print(f"Failed to load icon: {e}")
         self.root.iconbitmap(icon_path)
         self.filepath = ""
         self.df = None
