@@ -2,6 +2,8 @@ import pandas as pd
 import sys
 import os
 import tempfile
+import traceback
+import datetime
 from tkinter import (
     Frame,
     filedialog,
@@ -15,6 +17,22 @@ from tkinter import (
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from PyPDF2 import PdfMerger
+
+def log_uncaught_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        # Let keyboard interrupts (Ctrl+C) exit silently
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+    with open("error.log", "a", encoding="utf-8") as f:
+        f.write("\n--- Runtime error on {}\n".format(datetime.datetime.now()))
+        traceback.print_exception(exc_type, exc_value, exc_traceback, file=f)
+
+    # Optional: also show the user a message
+    import tkinter.messagebox as mb
+    mb.showerror("Runtime Error", "An error occurred during execution.\nCheck error.log for details.")
+
+# Set the global exception handler
+sys.excepthook = log_uncaught_exception
 
 REQUIRED_FIELDS = [
     "Gender",
@@ -128,7 +146,17 @@ class GameCardApp:
         messagebox.showinfo("Success", f"PDF created:\n{output_path}")
 
 
+
 if __name__ == "__main__":
-    root = Tk()
-    app = GameCardApp(root)
-    root.mainloop()
+    try:
+        root = Tk()
+        app = GameCardApp(root)
+        root.mainloop()
+    except Exception as e:
+        # Save to error log
+        with open("error.log", "a", encoding="utf-8") as f:
+            f.write("\n--- Crash on {}\n".format(datetime.datetime.now()))
+            traceback.print_exc(file=f)
+        # Optionally also alert the user
+        import tkinter.messagebox as mb
+        mb.showerror("Startup Error", "The app failed to launch.\nCheck error.log for details.")
