@@ -34,6 +34,8 @@ class GameCardApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Game Card Generator")
+        icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
+        self.root.iconbitmap(icon_path)
         self.filepath = ""
         self.df = None
         self.dropdown_vars = {}
