@@ -19,5 +19,4 @@ __pycache__/
 Thumbs.db
 
 # Ignore logs or temp files
-*.log
 *.tmp
