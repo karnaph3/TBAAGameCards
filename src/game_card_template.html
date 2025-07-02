@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border: 1px solid #000000;
+            border-collapse: collapse;
+            margin: 0 auto;
+            padding: 0px;
+            table-layout: fixed;
+            min-width: 650px;
+        }
+
+        table th {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #000000;
+            background: #1b90bb;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center
+        }
+
+        table td {
+            padding: 8px;
+            border: 1px solid #000000;
+            text-align: left;
+        }
+
+        table tr {
+            background-color: white;
+            color: #000000;
+            text-align: center;
+            width: 100%;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        @page {
+            margin: 0.6cm;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="page-break">
+        {% for copy_type in ["TOURNAMENT COPY", "REFEREE COPY", "SCOREBOARD COPY"] %}
+        <div class="card">
+            <table>
+                <tr style="background-color: #ccc; text-align: center;">
+                    <td colspan="6" style="text-align: center;"><strong style="color: #000;">{{ copy_type }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>GENDER:</strong> {{ Gender }} </td>
+                    <td colspan="2"><strong>GAME #:</strong> {{ Game_Number }} </td>
+                    <td colspan="2"><strong>AGE:</strong> {{ Age }} </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center;"><strong>T.B.A.A. ANNUAL PRE-SEASON TOURNAMENT</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>DATE:</strong> {{ Date }}</td>
+                    <td colspan="2"><strong>FIELD #:</strong> {{ Field_Number }} </td>
+                    <td colspan="2"><strong>START TIME:</strong> {{ Start_Time }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>HOME:</strong> {{ Home_Team }}</td>
+                    <td colspan="3"><strong>AWAY:</strong> {{ Away_Team }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>COLOR:</strong> ________________________________</td>
+                    <td colspan="3"><strong>COLOR:</strong> ________________________________</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>SCORE</strong></td>
+                    <td colspan="2"><strong>HOME</strong></td>
+                    <td colspan="2"><strong>AWAY</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>CAUTIONS/COMMENTS</strong></td>
+                    <td colspan="2">FIRST HALF</td>
+                    <td colspan="2">FIRST HALF</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" colspan="2"></td>
+                    <td colspan="2">SECOND HALF</td>
+                    <td colspan="2">SECOND HALF</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>FINAL</strong></td>
+                    <td colspan="2"><strong>FINAL</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>REFEREE:</strong> {{ Referee }}</td>
+                    <td colspan="2"><strong>LINESMAN:</strong> {{ Linesman1 }}</td>
+                    <td colspan="2"><strong>LINESMAN:</strong> {{ Linesman2 }}</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
