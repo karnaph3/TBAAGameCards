@@ -14,9 +14,16 @@ from tkinter import (
     OptionMenu,
     StringVar,
 )
+import tkinter.font as tkFont
 from jinja2 import Environment, FileSystemLoader
 from weasyprint import HTML
 from PyPDF2 import PdfMerger
+
+# Add 'dlls' subfolder to DLL search path if running as bundled .exe
+if getattr(sys, 'frozen', False):
+    dll_path = os.path.join(sys._MEIPASS, 'etc') if hasattr(sys, '_MEIPASS') else os.path.join(os.path.dirname(sys.executable), 'dlls')
+    if os.path.isdir(dll_path):
+        os.add_dll_directory(dll_path)
 
 def log_uncaught_exception(exc_type, exc_value, exc_traceback):
     if issubclass(exc_type, KeyboardInterrupt):
@@ -65,20 +72,23 @@ class GameCardApp:
         except Exception as e:
             print(f"Failed to load icon: {e}")
         self.root.iconbitmap(icon_path)
+        self.root.geometry("800x600")  # width x height in pixels
         self.filepath = ""
         self.df = None
         self.dropdown_vars = {}
         self.template_file = os.path.join(
             os.path.dirname(__file__), "game_card_template.html"
         )
+        self.default_font = tkFont.Font(family="Arial", size=12)
+        self.root.option_add("*Font", self.default_font)
 
         Button(root, text="Select CSV/XLSX File", command=self.load_file).pack(pady=10)
         self.mapping_frame = Frame(root)
-        self.mapping_frame.pack(fill="x", padx=10)
+        self.mapping_frame.pack(fill="x", padx=20, pady=10)
         self.generate_btn = Button(
             root, text="Generate PDF", command=self.generate_pdf, state="disabled"
         )
-        self.generate_btn.pack(pady=10)
+        self.generate_btn.pack(pady=15)
 
     def load_file(self):
         self.dropdown_vars = {}
