@@ -12,15 +12,16 @@ This tool converts the data in a CSV/XLSX table into a PDF of a tournament's gam
 
 4. Click on the file called `TBAA_Card_Generator.exe`.
 * You may get a pop-up that warns you about this executable! This is expected. Click the "More Info" button and then click the "Run anyway" button that appears.
-![Warning image](image-3.png)
+![Warning image](img/image-3.png)
 
 5. This will open a UI that looks like this:
-![UI Example](image-1.png)
+![UI Example](img/image-1.png)
 
 6. Click on the "Select CSV/XLSX File" button to select the file that contains the game data.
+![UI Example](img/image-4.png)
 
 7. In the dropdowns that appear, select which column name *in your file* corresponds to the input it is asking for
-
+![UI example](img/image-5.png)
 8. After all columns have been selected from the dropdown, click "Generate PDF". Enter the file name and decide where you want to save it. 
 
 9. Congrats! You've saved yourself agonizing hours that would've been spent handwriting these cards. 
