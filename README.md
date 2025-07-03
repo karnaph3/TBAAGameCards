@@ -5,4 +5,4 @@ This tool converts the data in a CSV/XLSX table into a PDF of a tournament's gam
 `source .venv/Scripts/activate`
 `deactivate`
 
-pyinstaller --onefile --icon=src/icon.ico --add-data "src/game_card_template.html;src" src/generate_card.py"
+pyinstaller --onefile  --name TBAA_Card_Generator  --add-data "src/game_card_template.html;." --add-data "src/icon.ico;."  --icon=src/icon.ico  src/generate_card.py

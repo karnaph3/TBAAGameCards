@@ -156,7 +156,10 @@ class GameCardApp:
             merger.close()
         messagebox.showinfo("Success", f"PDF created:\n{output_path}")
 
-
+def log_crash_to_file(e):
+    with open("error.log", "a", encoding="utf-8") as f:
+        f.write("\n--- Crash on {}\n".format(datetime.datetime.now()))
+        traceback.print_exc(file=f)
 
 if __name__ == "__main__":
     try:
@@ -164,10 +167,12 @@ if __name__ == "__main__":
         app = GameCardApp(root)
         root.mainloop()
     except Exception as e:
-        # Save to error log
-        with open("error.log", "a", encoding="utf-8") as f:
-            f.write("\n--- Crash on {}\n".format(datetime.datetime.now()))
-            traceback.print_exc(file=f)
-        # Optionally also alert the user
+        log_crash_to_file(e)
         import tkinter.messagebox as mb
         mb.showerror("Startup Error", "The app failed to launch.\nCheck error.log for details.")
+
+        # Show traceback in console
+        traceback.print_exc()
+
+        # Pause to allow user to read
+        input("Press Enter to exit...")
