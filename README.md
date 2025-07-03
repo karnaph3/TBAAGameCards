@@ -6,7 +6,7 @@ This tool converts the data in a CSV/XLSX table into a PDF of a tournament's gam
 ## Instructions:
 1. Click the above link to download a zip file called `Tournament_Game_Card_Generator.zip`
 
-2. Right-Click on the downloaded folder in your 'Downloads' on your desktop and select `Extract here...`
+2. Right-Click on the downloaded folder in your 'Downloads' on your desktop and select `Extract all...`, and click the `Extract` button
 
 3. Click into the new `Tournament_Game_Card_Generator` folder (that has been unzipped within your 'Downloads') and then click on the `dist` folder within that one
 
