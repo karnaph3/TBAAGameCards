@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Table Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Edit Game Details From Uploaded Table</h2>
+        <form method="POST" class="card p-4 shadow-sm">
+            <input type="hidden" name="temp_dir" value="{{ temp_dir }}">
+
+            {% if deleted_row is not none and deleted_index is not none %}
+            <div class="alert alert-warning d-flex justify-content-between align-items-center mt-3">
+                <div>Row deleted. <strong>Undo?</strong></div>
+                <form method="POST" class="d-inline mb-0">
+                    <input type="hidden" name="temp_dir" value="{{ temp_dir }}">
+                    <input type="hidden" name="deleted_row" value="{{ deleted_row }}">
+                    <input type="hidden" name="deleted_index" value="{{ deleted_index }}">
+                    <button type="submit" name="action" value="undo_delete" class="btn btn-sm btn-warning">Undo Delete</button>
+                </form>
+            </div>
+            {% endif %}
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            {% for col in df.columns %}
+                            <th>{{ col.replace('_', ' ') }}</th>
+                            {% endfor %}
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in range(df.shape[0]) %}
+                        <tr>
+                            {% for col in df.columns %}
+                            <td>
+                                <input type="text" class="form-control form-control-sm" name="cell_{{ i }}_{{ col }}" value="{{ df.iloc[i][col] }}">
+                            </td>
+                            {% endfor %}
+                            <td>
+                                <button type="submit" name="action" value="delete_row_{{ i }}" class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" name="action" value="add_row" class="btn btn-secondary">Add Row</button>
+                <button type="submit" name="action" value="reset_table" class="btn btn-danger ms-2">Reset Table to Original</button>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{{ url_for('preview_columns', temp_dir=temp_dir) }}" class="btn btn-outline-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

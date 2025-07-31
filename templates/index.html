@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Card Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .game-card-preview-table {
+      border: 1px solid #000;
+      border-collapse: collapse;
+      min-width: 650px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      background: #fff;
+      margin: 0 auto;
+      table-layout: fixed;
+    }
+    .game-card-preview-table td, .game-card-preview-table th {
+      border: 2px solid #000;
+      background: #fff;
+      padding: 8px;
+      text-align: left;
+    }
+    .game-card-preview-table tr {
+      background: #fff;
+    }
+    .game-card-preview-table .header-row {
+      background: #ccc;
+      text-align: center;
+    }
+    .game-card-preview-box {
+      border: 3px solid #1b90bb;
+      border-radius: 10px;
+      background: #f8f9fa;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 32px 24px;
+      margin: 0 auto 32px auto;
+      max-width: 750px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold text-primary mb-3" style="letter-spacing: 2px; text-shadow: 1px 2px 8px #b3e0f7;">Game Card Generator</h1>
+      <p class="lead mb-3" style="font-size: 1.35rem; color: #333;">
+        Instantly create professional game cards for your soccer tournament.<br>
+        Upload your schedule and download ready-to-print cards for referees, scoreboard, and tournament staff.
+      </p>
+      <div class="d-flex justify-content-center mb-2">
+        <span class="badge bg-info text-dark fs-6 px-3 py-2 me-2 shadow">Soccer</span>
+        <span class="badge bg-success fs-6 px-3 py-2 me-2 shadow">PDF Export</span>
+        <span class="badge bg-warning text-dark fs-6 px-3 py-2 shadow">Easy & Fast</span>
+      </div>
+    </div>
+    <form method="POST" action="/preview-columns" enctype="multipart/form-data" class="card p-4 shadow-sm mx-auto" style="max-width: 500px;">
+      <div class="mb-3">
+        <input type="file" class="form-control" name="file" accept=".csv,.xlsx" required>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+    <br>
+
+    <div class="d-flex justify-content-center">
+        <div class="game-card-preview-box">
+            <h3 class="text-center mb-4">Sample Game Card Preview</h3>
+            <table class="game-card-preview-table">
+                <tr class="header-row">
+                    <td colspan="6" style="background-color: #ccc; text-align: center;"><strong style="color: #000;">TOURNAMENT COPY</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>GENDER:</strong> Boys</td>
+                    <td colspan="2"><strong>GAME #:</strong> 123</td>
+                    <td colspan="2"><strong>AGE:</strong> U14</td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: center;"><strong>T.B.A.A. ANNUAL PRE-SEASON TOURNAMENT</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>DATE:</strong> July 16, 2025</td>
+                    <td colspan="2"><strong>FIELD #:</strong> 5</td>
+                    <td colspan="2"><strong>START TIME:</strong> 10:00 AM</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>HOME:</strong> Thunder FC</td>
+                    <td colspan="3"><strong>AWAY:</strong> Lightning SC</td>
+                </tr>
+                <tr>
+                    <td colspan="3"><strong>COLOR:</strong> Blue</td>
+                    <td colspan="3"><strong>COLOR:</strong> Red</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>SCORE</strong></td>
+                    <td colspan="2"><strong>HOME</strong></td>
+                    <td colspan="2"><strong>AWAY</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>CAUTIONS/COMMENTS</strong></td>
+                    <td colspan="2">FIRST HALF</td>
+                    <td colspan="2">FIRST HALF</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" colspan="2"></td>
+                    <td colspan="2">SECOND HALF</td>
+                    <td colspan="2">SECOND HALF</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>FINAL</strong></td>
+                    <td colspan="2"><strong>FINAL</strong></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>REFEREE:</strong> Alex Refman</td>
+                    <td colspan="2"><strong>LINESMAN:</strong> Jamie Line</td>
+                    <td colspan="2"><strong>LINESMAN:</strong> Casey Flag</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+  </div>
+<footer class="text-center py-3">
+    <small>Running into any issues?
+            <a href="mailto:karlie.naphy@gmail.com">Send me an email</a>
+    </small>
+</footer>
+</body>
+</html>
